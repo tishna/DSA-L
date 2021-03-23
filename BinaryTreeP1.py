@@ -99,3 +99,31 @@ class Solution:
             return None
         root.left, root.right = self.invertTree(root.right), self.invertTree(root.left)
         return root
+
+    
+    
+    
+    
+ class Solution:
+    def constructMaximumBinaryTree(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: TreeNode
+        """
+        def construct(l, r):
+            if l > r:
+                return
+            elif l == r:
+                return TreeNode(nums[l])
+            maximum = -float('inf')
+            for i in range(l, r+1):
+                if maximum < nums[i]:
+                    maximum = nums[i]
+                    max_index = i
+            left = construct(l, max_index-1)
+            right = construct(max_index+1,r)
+            root = TreeNode(maximum)
+            root.left = left
+            root.right = right
+            return root
+        return construct(0, len(nums)-1)
