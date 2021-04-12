@@ -127,3 +127,36 @@ class Solution:
             root.right = right
             return root
         return construct(0, len(nums)-1)
+    
+    
+    
+    
+    
+    
+    
+    #Inorder
+    
+def inorderTraversal1(self, root):
+    res = []
+    self.helper(root, res) #Call the recursive helper
+    return res
+    
+def helper(self, root, res):
+    if root:
+        self.helper(root.left, res) # Till left exists keep going - get L
+        res.append(root.val) # Append root
+        self.helper(root.right, res) #Roots right
+ 
+# iteratively       
+def inorderTraversal(self, root):
+    res, stack = [], []
+    while True:
+        while root:
+            stack.append(root)
+            root = root.left # Till left exists keep going left and append to stack *for every node*
+        if not stack:
+            return res # If nothing in stack- no tree
+        node = stack.pop() # pop from stack - left most child
+        res.append(node.val) # append node's value
+        root = node.right # go to right
+
