@@ -160,3 +160,41 @@ def inorderTraversal(self, root):
         res.append(node.val) # append node's value
         root = node.right # go to right
 
+
+        
+        
+    def levelOrder(self, root: TreeNode) -> List[List[int]]:
+        if not root:
+            return None
+        
+        queue = [root]
+        result = []
+        while queue:
+            
+            arr = []
+            for i in range(len(queue)):
+                node = queue.pop(0)
+                arr.append(node.val)
+                left = node.left
+                right = node.right
+                
+                if left:
+                    queue.append(left)
+                if right:
+                    queue.append(right)
+                    
+            result.append(arr)
+      
+    
+     def preorderTraversal(self, root: TreeNode) -> List[int]:
+        def dfs(node):
+            if not node:
+                return
+            pre_order.append(node.val)
+            dfs(node.left)
+            dfs(node.right)
+        
+        pre_order = []
+        dfs(root)
+        return pre_order
+            
